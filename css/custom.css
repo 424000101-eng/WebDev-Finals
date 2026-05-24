@@ -1,27 +1,173 @@
 :root {
-    /* Custom primary teal theme to completely replace default Bootstrap blue */
-    --bs-primary: #0d9488;
-    --bs-primary-rgb: 13, 148, 136;
-    
-    /* Modifying typography base dimensions */
-    --bs-font-size-base: 1.05rem;
-    
-    /* Custom behavior modifications */
-    --bs-link-color: #0d9488;
-    --bs-link-hover-color: #0f766e;
+    --bs-primary: #10b981;          
+    --bs-primary-rgb: 16, 185, 129;
+    --bs-body-bg: #0f172a;          
+    --bs-body-color: #f8fafc;       
+    --bs-font-family-sans-serif: 'Plus Jakarta Sans', 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Ensure custom primary accents function smoothly on contextual components */
+body {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    overflow-x: hidden;
+    letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+}
+
+a, .btn, .card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar {
+    background-color: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(12px); 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.04em;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: #94a3b8 !important;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--bs-primary) !important;
+}
+
+.hero-section {
+    position: relative;
+    padding: 10rem 0 7rem 0;
+    background: radial-gradient(circle at 90% 10%, rgba(16, 185, 129, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 10% 90%, rgba(56, 189, 248, 0.05) 0%, transparent 40%);
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #ffffff, #cbd5e1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-tagline {
+    color: #94a3b8;
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2.5rem auto;
+}
+
 .btn-primary {
+    background-color: var(--bs-primary);
+    border: none;
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.card {
+    background-color: #1e293b; 
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(16, 185, 129, 0.3);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.card-body {
+    padding: 1.75rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.card-text {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.btn-outline-primary {
+    color: var(--bs-primary);
+    border-color: rgba(16, 185, 129, 0.4);
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.btn-outline-primary:hover {
     background-color: var(--bs-primary);
     border-color: var(--bs-primary);
 }
 
-.btn-primary:hover, .btn-primary:focus {
-    background-color: #0f766e;
-    border-color: #0f766e;
+.modal-content {
+    background-color: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    color: #ffffff;
 }
 
-.text-primary {
-    color: var(--bs-primary) !important;
+.modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.form-control {
+    background-color: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+}
+
+.form-control:focus {
+    background-color: #0f172a;
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+    color: #ffffff;
+}
+
+footer {
+    background-color: #090d16;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 3rem 0;
+    margin-top: 8rem;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #94a3b8;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--bs-primary);
 }
