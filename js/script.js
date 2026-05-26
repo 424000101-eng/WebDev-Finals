@@ -16,18 +16,34 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     
     form.classList.remove('was-validated');
     submitBtn.disabled = true;
+    submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...`;
+    
     modalAlertContainer.innerHTML = '';
     alertContainer.innerHTML = '';
 
     const formData = new FormData(form);
+    const formObject = {};
+    formData.forEach((value, key) => {
+        formObject[key] = value.trim();
+    });
 
     fetch('contact.php', {
         method: 'POST',
-        body: formData
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formObject)
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Server returned HTTP status condition ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
         submitBtn.disabled = false;
+        submitBtn.innerHTML = "Process Submission";
+
         if (data.status === 'error') {
             modalAlertContainer.innerHTML = `
                 <div class="alert alert-danger alert-dismissible fade show border-0 text-white shadow-sm" role="alert" style="background-color: #3b252c; border-left: 4px solid #f87171 !important;">
@@ -56,20 +72,21 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
                 </div>`;
                 
             form.reset();
-            modalInstance.hide();
+            if (modalInstance) {
+                modalInstance.hide();
+            }
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     })
     .catch(error => {
         submitBtn.disabled = false;
+        submitBtn.innerHTML = "Process Submission";
+        
         modalAlertContainer.innerHTML = `
             <div class="alert alert-danger alert-dismissible fade show border-0 text-white shadow-sm" role="alert" style="background-color: #3b252c; border-left: 4px solid #f87171 !important;">
                 <div class="d-flex align-items-center">
                     <span class="me-2">⚠️</span>
-                    <div><strong>Error:</strong> Something went wrong with the connection. Please try again.</div>
+                    <div><strong>Connection Exception:</strong> ${error.message}</div>
                 </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>`;
-    });
-});
+                <button type="button" class="btn-

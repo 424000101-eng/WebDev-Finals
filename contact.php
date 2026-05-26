@@ -9,6 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit();
 }
 
+$raw_input = file_get_contents("php://input");
+$json_data = json_decode($raw_input, true);
+
+if (is_array($json_data)) {
+    $_POST = array_merge($_POST, $json_data);
+}
+
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
@@ -65,7 +72,13 @@ $stmt->bind_param("ssss", $name_clean, $email_clean, $subject_clean, $message_cl
 if ($stmt->execute()) {
     echo json_encode([
         "status" => "success",
-        "message" => "Your inquiry has been successfully recorded in the phpMyAdmin database!"
+        "message" => "Your inquiry has been successfully recorded in the phpMyAdmin database!",
+        "data" => [
+            "name" => $name_clean,
+            "email" => $email_clean,
+            "subject" => $subject_clean,
+            "message" => $message_clean
+        ]
     ]);
 } else {
     echo json_encode([
