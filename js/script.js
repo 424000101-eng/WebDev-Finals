@@ -89,4 +89,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
                     <span class="me-2">⚠️</span>
                     <div><strong>Connection Exception:</strong> ${error.message}</div>
                 </div>
-                <button type="button" class="btn-
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>`;
+    });
+});
