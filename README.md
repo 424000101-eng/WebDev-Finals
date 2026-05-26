@@ -11,7 +11,7 @@ A responsive, dark-themed academic portfolio platform built with Bootstrap 5 fro
 - **John Paul Del Rosario**
 - **Joshua Litiatco**
 
----
+----
 
 ## 🛠️ Core Project Architecture
 
@@ -28,7 +28,7 @@ A responsive, dark-themed academic portfolio platform built with Bootstrap 5 fro
 - Enforces strict data sanitization rules via `htmlspecialchars()` to filter text components safely.
 - Implements validation loops checking for empty elements and tracking strict message length limitations (minimum 20 characters required).
 
----
+----
 
 ## 🚀 Local Installation & Setup Instructions
 
